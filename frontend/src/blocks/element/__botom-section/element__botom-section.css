@@ -1,0 +1,8 @@
+.element__botom-section {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+}

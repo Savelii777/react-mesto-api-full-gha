@@ -1,0 +1,18 @@
+.header__user_type_logout {
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #A9A9A9;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+
+@media screen and (max-width: 561px) {
+    .header__user_type_logout {
+        margin-top: 18px;
+    }
+}

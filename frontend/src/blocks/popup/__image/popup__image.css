@@ -1,0 +1,9 @@
+.popup__image{
+    display: flex;
+    margin: 60px auto 0 auto;
+}
+@media screen and (max-width: 350px) {
+    .popup__image{
+        margin: 50px auto 0 auto;
+    }
+}

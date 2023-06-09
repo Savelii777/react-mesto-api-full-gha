@@ -1,0 +1,33 @@
+.popup__text {
+    max-width: 358px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 32px auto 54px auto;
+    color: black;
+}
+
+
+.popup__text-confirm {
+    margin: 0 0 38px 0;
+}
+
+.popup__text-infoTooltip {
+    text-align: center;
+    margin-bottom: 23px;
+}
+
+@media screen and (max-width: 320px) {
+    .popup__text {
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 75px;
+    }
+
+    .popup__text-infoTooltip {
+        font-size: 20px;
+        line-height: 24px;
+        margin-bottom: 20px;
+    }
+}
