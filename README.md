@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.21.251
+IP-адрес 10.129.0.28
 
 Frontend https://savelii.sporyshev.nomoredomains.rocks
 
