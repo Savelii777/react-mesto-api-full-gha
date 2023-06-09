@@ -36,7 +36,6 @@ function Register({register}) {
                         required
                     />
                     <span className={"popup__input-error popup__input-error_active"}>{errors.email}</span>
-
                     <input
                         id="password"
                         name="password"

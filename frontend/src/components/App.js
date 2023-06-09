@@ -70,7 +70,7 @@ function App() {
     function handelLoginClick(password, email) {
         login(password, email)
             .then((data) => {
-                localStorage.setItem("jwt", data.token);
+                localStorage.setItem("jwt", data._id);
                 isloggedIn(true);
                 navigate('/',{replace: true});
                 setUserEmail(email)
