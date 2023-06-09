@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://savelii.sporyshev.nomoredomains.rocks/';
+export const BASE_URL = 'https://api.savelii.sporyshev.nomoredomains.rocks';
 
 function checkResponse(res) {
     if(res.ok) {
