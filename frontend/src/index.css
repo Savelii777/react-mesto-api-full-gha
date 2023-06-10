@@ -74,10 +74,12 @@
 @import url("./blocks/popup-avatar/__container/popup-avatar__container.css");
 
 @import url("./blocks/auth/auth.css");
+@import url("./blocks/auth/__container/auth__container.css");
 @import url("blocks/auth/__save-button/_inactive/auth__save-button_type_inactive.css");
 @import url("./blocks/auth/__save-button/auth__save-button.css");
 @import url("./blocks/auth/__title/auth__title.css");
 @import url("blocks/auth/__input/auth__input.css");
+@import url("./blocks/auth/__error/auth__error.css");
 @import url("blocks/auth/__caption/auth__caption.css");
 
 

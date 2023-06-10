@@ -1,6 +1,7 @@
 function AuthForm({disabled, onSubmit, children, buttonText}) {
     return (
         <form className="auth" onSubmit={onSubmit} noValidate>
+            <div className="auth__container">
             {children}
             <button
                 disabled={disabled}
@@ -12,6 +13,7 @@ function AuthForm({disabled, onSubmit, children, buttonText}) {
             >
                 {buttonText}
             </button>
+            </div>
         </form>
     );
 }

@@ -35,7 +35,7 @@ function Register({register}) {
                         minLength="2"
                         required
                     />
-                    <span className={"popup__input-error popup__input-error_active"}>{errors.email}</span>
+                    <span className={"popup__input-error popup__input-error_active auth__error"}>{errors.email}</span>
                     <input
                         id="password"
                         name="password"
@@ -47,7 +47,7 @@ function Register({register}) {
                         minLength="2"
                         required
                     />
-                    <span className={"popup__input-error popup__input-error_active"}>{errors.password}</span>
+                    <span className={"popup__input-error popup__input-error_active auth__error"}>{errors.password}</span>
                 </AuthForm>
                 <Link to="/sign-in" className="auth__caption">
                     Уже зарегистрировались? Войти
