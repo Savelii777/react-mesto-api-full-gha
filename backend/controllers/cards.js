@@ -42,7 +42,7 @@ module.exports.deleteCards = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new NotFoundError('Передан некорректный id'));
+        next(new BadRequestError('Передан некорректный id'));
       } else {
         next(err);
       }
@@ -63,7 +63,7 @@ module.exports.putLikes = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Не получается поставить лайк.'));
+        next(new BadRequestError('Переданы некорректные данные для постановки лайка.'));
       } else {
         next(err);
       }
@@ -84,7 +84,7 @@ module.exports.deleteLikes = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Не получается поставить лайк.'));
+        next(new BadRequestError('Переданы некорректные данные для постановки лайка.'));
       } else {
         next(err);
       }
