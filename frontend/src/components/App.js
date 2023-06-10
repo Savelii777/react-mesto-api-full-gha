@@ -41,11 +41,46 @@ function App() {
     const [userEmail, setUserEmail] = useState("")
     const [isActiveAdidasButton, setIsActiveAdidasButton] = useState(false)
     const [pageLoading, setPageloading] = useState(true);
+    const token = localStorage.getItem('jwt');
+
+    useEffect(() => {
+        if(token) {
+          isloggedIn(true);
+          setPageloading(true);
+          Promise.all([api.getUserInfoFromServer(), api.getCardsFromServer()])
+          .then(([user, cards]) => {
+            console.log(cards)
+            doSetCurrentUser(user);
+            doSetCards(cards);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => setPageloading(false))
+        }
+      }, [token]);
 
     function openPopupBurger(e) {
         e.preventDefault();
         setIsActiveAdidasButton(!isActiveAdidasButton)
     }
+    useEffect(() => {
+        
+          if (token){  
+            auth
+            .checkToken(token)
+            .then((res) => {
+              if (res){
+                isloggedIn(true);
+                setUserEmail(res.email) 
+                navigate("/", {replace: true})
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+          }
+        }, [navigate, token])
 
     function handelRegisterClick(password, email) {
         register(password, email)
@@ -70,8 +105,9 @@ function App() {
     function handelLoginClick(password, email) {
         login(password, email)
             .then((data) => {
-                localStorage.setItem("jwt", data._id);
+                localStorage.setItem("jwt", data.token);
                 isloggedIn(true);
+                console.log("1"+loggedIn)
                 navigate('/',{replace: true});
                 setUserEmail(email)
             })
@@ -90,66 +126,6 @@ function App() {
                 }
             })
     }
-
-    useEffect(() => {
-        const jwt = localStorage.getItem("jwt");
-        if (jwt) {
-            const checkToken = async () => {
-                try {
-                    const res = await auth.checkToken(jwt);
-                    if (res) {
-                        isloggedIn(true);
-                        setUserEmail(res.data.email);
-                        navigate("/", { replace: true });
-                    }
-                } catch (error) {
-                    console.log(error);
-                }
-            };
-            checkToken();
-        }
-    }, []);
-
-
-    useEffect(() => {
-        if(loggedIn) {
-            setPageloading(true);
-            Promise.all([api.getUserInfoFromServer(), api.getCardsFromServer()])
-                .then(([user, cards]) => {
-                    doSetCurrentUser(user);
-                    doSetCards(cards);
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
-                .finally(() => setPageloading(false))
-        }
-    }, [isloggedIn]);
-
-    //получаем данные с сервера
-
-    useEffect(() => {
-        Promise.all([api.getUserInfoFromServer(), api.getCardsFromServer()])
-            .then(([user, cards]) => {
-                // setUserName(user.name);
-                // setUserJob(user.about);
-                // setUserAvatar(user.avatar);
-                // setCards(
-                //   cards.map((card) => ({
-                //     cardId: card._id,
-                //     cardName: card.name,
-                //     cardImgLink: card.link,
-                //     cardLikes: card.likes,
-                //   }))
-                // );
-                doSetCurrentUser(user);
-                doSetCards(cards);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
-
 
 
 
@@ -187,7 +163,7 @@ function App() {
         doSetLoading(true)
         api.addNewCardToServer(value)
             .then((newCard) => {
-                doSetCards([newCard, ...cards]);
+                doSetCards([...cards, newCard]);
             })
             .then(() => { closeAllPopups(); })
             .catch((err) => {
@@ -199,7 +175,7 @@ function App() {
     }
 
     function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const isLiked = card.likes.some(i => i === currentUser._id);
         if (!isLiked) {
             api.addLikeToServer(card._id, !isLiked)
                 .then((newCard) => {

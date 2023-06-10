@@ -1,15 +1,13 @@
 class Api {
-    constructor(options)
+    constructor({baseUrl})
     {
-        this._baseUrl = options.baseUrl;
-        this._authorization = options.headers.authorization;
-
+        this._baseUrl = baseUrl;
     }
     _checkResponseFromServer(res){
         if (res.ok) {
             return res.json();
           }
-        console.log("sss")
+        console.log("ssshhhhhhhhhh")
           return Promise.reject(`Ошибка: ${res.status}`);
     }
     
@@ -17,8 +15,8 @@ class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'GET',
             headers:{
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
 
         })
@@ -29,8 +27,8 @@ class Api {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'GET',
             headers:{
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
         .then(this._checkResponseFromServer);   
@@ -40,8 +38,8 @@ class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers:{
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             },
             body: JSON.stringify(userInfo)
         })
@@ -53,8 +51,8 @@ class Api {
         return fetch(this._baseUrl + '/users/me/avatar', {
             method: 'PATCH',
             headers:{
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             },
             body: JSON.stringify(avatar)})
             .then(this._checkResponseFromServer
@@ -64,8 +62,8 @@ class Api {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers:{
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             },
             body: JSON.stringify(cardInformation)
         })
@@ -76,8 +74,8 @@ class Api {
         return fetch(`${this._baseUrl}/cards/`+cardID, {
             method: 'DELETE',
             headers:{
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
         .then(this._checkResponseFromServer);   
@@ -87,8 +85,8 @@ class Api {
         return fetch(`${this._baseUrl}/cards/`+cardID+'/likes', {
             method: 'PUT',
             headers:{
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
         .then(this._checkResponseFromServer);   
@@ -98,8 +96,8 @@ class Api {
         return fetch(`${this._baseUrl}/cards/`+cardID+'/likes', {
             method: 'DELETE',
             headers:{
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
         .then(this._checkResponseFromServer);   
@@ -107,9 +105,5 @@ class Api {
 
 }
 export const api = new Api({
-    baseUrl: 'https://nomoreparties.co/v1/cohort-54',
-    headers: {
-      authorization: '3870d2ad-f528-4c2b-9e76-5a8a9ac5c376',
-      'Content-Type': 'application/json'
-    }
+    baseUrl: 'https://api.savelii.sporyshev.nomoredomains.rocks'
   });

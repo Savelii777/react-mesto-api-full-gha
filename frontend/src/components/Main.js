@@ -35,7 +35,7 @@ function Main(props) {
                     ></button>
                 </section>
                 <section className="elements">
-                    {props.cards.map((card) => (<Card key={card._id} card={card} onCardClick={props.onCardClick}
+                    {props.cards.slice().reverse().map((card) => (<Card key={card._id} card={card} onCardClick={props.onCardClick}
                                                       onClickCardDelete={props.onClickCardDelete}
                                                       onConfirmClick={props.onConfirmClick}
                                                       onCardLike={props.onCardLike}/>))}

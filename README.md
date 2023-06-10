@@ -9,8 +9,10 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.21.252
+IP-адрес 51.250.110.113
 
-Frontend https://savelii.sporyshev.nomoredomains.rocks
+Frontend https://savelii.sporyshev777.nomoredomains.rocks
 
 Backend https://api.savelii.sporyshev.nomoredomains.rocks
+
+Перезапустил ВМ из за этого поменялся IP и случайно поменял домен для фронтенда
